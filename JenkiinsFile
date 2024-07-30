@@ -1,1 +1,40 @@
-hi
+pipeline {
+    agent any  
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the code from your source control
+                checkout scm
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    // Install npm dependencies
+                    sh 'npm install'
+                }
+            }
+        }
+
+        stage('Run Application') {
+            steps {
+                script {
+                    // Run the application
+                    sh 'npm run start'
+                }
+            }
+        }
+        
+        stage('Print Hello World') {
+            steps {
+                script {
+                    // Print "Hello World" to the console
+                    echo 'Hello World'
+                }
+            }
+        }
+    }
+}
+
